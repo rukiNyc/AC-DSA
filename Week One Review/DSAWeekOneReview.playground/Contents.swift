@@ -13,13 +13,39 @@ var str = "Hello, playground"
 /*
 1) Write an algorithm with the following runtimes:
 
-a) O(1)
+a) O(1) 
+ 
+ for i in 4{
+    print (i)
+ 
+ }
  
 b) O(n)
  
+for i in yourArray.count {
+  //find smallest
+ 
+}
+ 
+ 
 c) O(nlog(n))
  
+ 
+ 
 d) O(n^2)
+ 
+ let count = 0
+ 
+ for i in yourArray.count {
+    let myArray = [1,2,3,4,5,6]
+    if myArray[count] == i{
+        dosmoething
+ 
+    }
+ 
+    count+=
+ 
+}
  
 e) O(n^3)
  
@@ -40,7 +66,7 @@ func problemA(myString: String) {
     }
 }
  
-//Runtime: 
+//Runtime: O(nsquare)Quadratic
 
 func problemB(myArr: [[Int]]) {
     var otherArr = [[Int]]()
@@ -51,7 +77,7 @@ func problemB(myArr: [[Int]]) {
     }
 }
 
-//Runtime:
+//Runtime:constant 0(n) not Linear!  0(n*m)
 
 func problemC(myArr: [Int]) -> Bool {
     if myArr.count < 10_000 {
@@ -61,19 +87,19 @@ func problemC(myArr: [Int]) -> Bool {
     }
 }
 
-//Runtime:
+//Runtime:constant  O(1) Constant
 
 func problemD(myArr: [Bool]) -> [Bool] {
     return myArr.map{!$0}
 }
 
-//Runtime:
+//Runtime: linear
 
 func problemE(myArr: [Int]) -> [Int] {
     return myArr.filter{$0 > 5}.map{$0 * 3}.sorted(by: <)
 }
 
-//Runtime:
+//Runtime:    linear + 0nsquare)linear + o(n)log n
 
 func problemF(myArr: Int) {
     for i in 0..<myArr {
@@ -81,7 +107,7 @@ func problemF(myArr: Int) {
     }
 }
 
-//Runtime:
+//Runtime: linear o( n)
 
 func problemG(myArr: [[[[[[String]]]]]]) {
     print(myArr[0][0][0][0][0].contains("hi!"))
@@ -113,7 +139,7 @@ func problemI(isEnabled: Bool) {
 //Arrays - the data structure
 //1) You have an array of 100 Strings (24 bytes each) at memory address 0ff3c0000.
 
-//a)What is the memory address of the 1st element?
+//a)What is the memory address of the 1st element? 0ff3c0000
 //b)What is the memory address of the 2nd element?
 //c)What is the memory address of the 4th element?
 //d)What is the memory address of the 14th element?
@@ -126,37 +152,37 @@ func problemI(isEnabled: Bool) {
 
 var myArr = [13,41,3,13,13,12,12,1,9]
 
-//a)
+//a) consant
 myArr.popLast()
 
-//b)
+//b) linear
 myArr.contains(1)
 
-//c
+//constant **** linear
 myArr.index(of: 9)
 
-//d
+//d linear *****constant
 myArr.count
 
-//e
+//e constant ****** linear
 myArr.insert(8, at: 0)
 
-//f
+//f constant  ******linear and  append is constant
 myArr.remove(at: 4)
 
-//g
+//g quadartic ****** o n inear
 myArr.reverse()
 
-//h
+//h n log n
 let h = myArr.sorted(by: >)
 
-//i
+//i linear o n
 let i = myArr.map{$0 * 2}
 
-//j
+//j o linear
 let j = myArr.filter{$0>0}
 
-//k
+//k linear
 let k = myArr.reduce(0, +)
 
 
