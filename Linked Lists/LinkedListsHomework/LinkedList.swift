@@ -22,7 +22,10 @@ class LinkedList<T: Equatable> {                              //my list equatble
         let current = self.head
         while ( current.key != nil && current.next != nil){
             print(current.key)
+            temp = temp.next!
         }
+        
+        print(temp.key)    //printing the 
     }
     
     var count: Int {   // Assume Counting al nodes without considering if value is exist
@@ -111,7 +114,9 @@ class LinkedList<T: Equatable> {                              //my list equatble
             if temp.key == targetKey {
               return true
             }
-            temp = temp.next!
+            if let next = temp.next {
+                temp = temp.next!
+            }
         }
         return false
     }
@@ -133,7 +138,7 @@ class LinkedList<T: Equatable> {                              //my list equatble
             else{
                 previous = current
             }
-            current = current.next!                               
+            current = current.next!
             count += 1
         }
        
