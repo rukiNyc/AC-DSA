@@ -9,26 +9,28 @@
 import Foundation
 
 class Node<T> {
-    var key: T!             //key means value!!!
+    var key: T!
     var next: Node?
+   // var previous: Node?
+    //var temp:Node?
+    
 }
 
-class LinkedList<T: Equatable> {                              //my list equatble = value param
+class LinkedList<T: Equatable> {
+    let head = Node<T>()
+    var current = Node<T>()                //this si not optional and wont work for last key->next =nil
     
-    var head  = Node<T>()
-    var temp  = Node<T>()//another node
-    
-    func printAllKeys() {                                  //print all values in nodes if they have any
-        let current = self.head
-        while ( current.key != nil && current.next != nil){
+    func printAllKeys() {
+        while (current.next != nil){
             print(current.key)
-            temp = temp.next!
+            current = current.next!
         }
-        
-        print(temp.key)    //printing the 
+    print(current.key)
     }
     
-    var count: Int {   // Assume Counting al nodes without considering if value is exist
+        
+    var count: Int {
+        
         var current = self.head
         var count = 1
         
@@ -36,115 +38,121 @@ class LinkedList<T: Equatable> {                              //my list equatble
             count += 1
             current = current.next!
         }
-        return count}
+        return count
+    }
 
     
     func append(element newKey: T) {                    //append last
-        var temp = self.head
-        let newNode = Node<T>()
         
+        // check  head
+        if head.key == nil && head.next == nil{
+            head.key = newKey
         
-        while temp.next != nil {
-            temp = temp.next!
-        }
-        temp.next = newNode
-        newNode.key = newKey
-        
-    }
-    
-    func getElement(at Index: Int) -> Node<T>? {/*
-        
-        while temp.next != nil {
-            if temp.next == trackNode{                  How to compare it says No binary operator
-                trackNode = temp.next
-            }}*/
-        
-        var count = 1
-        var temp = self.head
-        
-        
-        while temp.next != nil {
-            
-            if count == Index{
-                return temp.key as! Node<T>?
-            }
-            count += 1
-            temp = temp.next!                               //why ! here but not above
-        }
-        return nil
-    }
-    
-    
-    func insert(_ key: T, at index: Int) {
-        
-//        var count = 1
-//        
-//        var current = self.head
-//        var previous = Node<T>()
-//        
-//        
-//        let newNode = Node<T>()                 //Create new node with value
-//        newNode.key = key
-//        
-//        while current.next != nil {             //start traverse
-//            
-//            if count == index{                  //find index
-//                previous = current.next!
-//                
-//                if ( previous.next == nil){
-//                    
-//                    head = newNode
-//                    newNode.next = current
-//                }
-//                else{
-//                    previous.next = newNode
-//                    newNode.next = current }
-//            }
-//            count += 1
-//            current = current.next!
-//        }
-    }
-    
-    
-    func contains(element targetKey: T) -> Bool {
-        
-        var temp = self.head
-       
-        while temp.next != nil && temp.key != nil{
-            if temp.key == targetKey {
-              return true
-            }
-            if let next = temp.next {
-                temp = temp.next!
-            }
-        }
-        return false
-    }
-    
-    
-    
-    func remove(at index: Int) {
-        var count = 1
-        var previous = Node<T>()
+        } else{
         var current = self.head
         
+        while current.next != nil {
+            current = current.next!
+        }
+        let newNode = Node<T>()
+        current.next = newNode
+        newNode.key = newKey
         
-        while temp.next != nil && current.key != nil {
+        }
+    }
+    
+    func getElement(at Index: Int) -> Node<T>? {
+        
+        var count = 1
+        var current = self.head
+        
+        // check  head
+        if head.next == nil{
+//            let newNode = Node<T>()
+//            current.next = newNode
+            
+        return nil
+            
+        } else{
+            
+            while current.next != nil {
+                
+                if count == Index{
+                    return current.key as! Node<T>?
+                }
+                count += 1
+                current = current.next!                               //why ! here but not above
+            }
+        }
+        return nil
+
+    }
+//
+//
+    func insert(_ key: T, at index: Int) {
+        
+        var count = 0
+        var current = self.head
+        var previous = Node<T>()
+        
+        while current.next != nil {
             
             if count == index{
-                previous.next = current.next!
-                current = previous.next!
-                }
-            else{
                 previous = current
+                let newNode = Node<T>()                 
+                newNode.key = key
+                
+                current.next = newNode
+                
             }
-            current = current.next!
             count += 1
+            current = current.next!
         }
        
-    
-    
     }
+    
+    
+    
+//    func contains(element targetKey: T) -> Bool {
+//        
+//        var temp = self.head
+//       
+//        while temp.next != nil && temp.key != nil{
+//            if temp.key == targetKey {
+//              return true
+//            }
+//            if let next = temp.next {
+//                temp = temp.next!
+//            }
+//        }
+//        
+//        return false
+//    }
+//
+//    
+//    
+//    func remove(at index: Int) {
+//        var count = 1
+//        var previous = Node<T>()
+//        var current = self.head
+//        
+//        
+////        while temp.next != nil && current.key != nil {
+////            
+////            if count == index{
+////                previous.next = current.next!
+////                current = previous.next!
+////                }
+////            else{
+////                previous = current
+////            }
+////            current = current.next!
+////            count += 1
+////        }
+////       
+//    
+//    
+//    }
 }
 
 
